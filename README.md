@@ -1,122 +1,80 @@
-# AI Tech Consultant
+# AI Technical Consultant Suite
 
-Author: Nimmakayala Sowjanya
+An end-to-end multi-agent AI system designed for technical consulting, featuring automated knowledge retrieval, intelligent customer support triage, and automated project scoping with contract diffing.
 
-## Overview
+---
 
-This repository contains three assignment tasks:
+## 🌐 Live Deployment & Links
 
-1. Knowledge Brain: Python service for collecting product documentation and answering questions using retrieved evidence.
-2. Inbox Agent: TypeScript pipeline for classifying emails, drafting replies through the Knowledge Brain, and tracking reviewer feedback.
-3. Meeting-to-Scope: Python pipeline for converting meeting transcripts into requirements, feasibility checks, estimates, proposals, and scope comparisons.
+| Resource | URL |
+| :--- | :--- |
+| **Live Web Application** | [https://ai-tech-consultant-0mci.onrender.com/](https://ai-tech-consultant-0mci.onrender.com/) |
+| **Interactive API Docs** | [https://ai-tech-consultant-0mci.onrender.com/docs](https://ai-tech-consultant-0mci.onrender.com/docs) |
+| **GitHub Repository** | [https://github.com/sowjanya2002-design/ai-tech-consultant](https://github.com/sowjanya2002-design/ai-tech-consultant) |
+| **Deployment Platform** | Render Cloud Web Service |
+| **Production Start Command** | `uvicorn app.main:app --host 0.0.0.0 --port $PORT` |
 
-## Repository Structure
+---
 
+## 🚀 Architecture Overview
+
+This project consists of three core tasks integrated into a unified web application:
+
+### Task 1: Knowledge Brain (`task1-knowledge-brain`)
+- **Web Crawler & Sitemap Sync**: Automatically crawls sitemaps (e.g., Brilliant Directories documentation), tracks SHA-256 hashes to detect content updates, and stores content in SQLite.
+- **Vector Search Engine**: Powered by ChromaDB with 1000-character chunks and 200-character overlap for high-precision semantic retrieval.
+- **Strict Evidence-Grounded Q&A**: Uses Claude 3.5 Sonnet to generate answers strictly from cited sources. Returns citations, status, and confidence scores. Automatically logs unanswered queries into an escalation queue.
+- **Multimodal Support**: Claude Vision integration for analyzing technical screenshots and visual error reports.
+
+### Task 2: AI Inbox Agent (`task2-inbox-agent`)
+- **Triage & Classification**: Categorizes incoming customer inquiries into 8 distinct categories (`how_to`, `troubleshooting`, `project_request`, `refund_cancellation`, `complaint`, `quote_request`, `follow_up`, `other`).
+- **Risk Assessment**: Automatically flags queries with `low`, `medium`, or `high` risk. High-risk requests (e.g., complaints or refund demands) are held for human review.
+- **Knowledge-Grounded Drafting**: Queries the Task 1 Knowledge Brain API (`POST /ask`) to produce compliant, professional responses signed off as "Support Team".
+- **Autonomy Progression Tracker**: Tracks agent reliability. After 20 consecutive unedited human approvals, the system automatically unlocks autonomous dispatch for that category.
+
+### Task 3: Meeting-to-Scope Agent (`task3-meeting-to-scope`)
+- **Multi-Agent Pipeline**:
+  1. *Transcript Analyst*: Extracts client requirements, budget constraints, timeline expectations, and tech stack requirements from meeting transcripts.
+  2. *Feasibility Agent*: Cross-checks requirements against the knowledge base for technical viability.
+  3. *Estimation Agent*: Computes development hours and pricing per deliverable based on complexity.
+  4. *Scope Agent*: Drafts a clear technical scope with explicit deliverables, milestones, assumptions, and out-of-scope boundaries.
+  5. *Proposal Agent*: Produces client-ready executive proposals.
+- **Scope Differ**: Compares initial project scopes against follow-up meeting transcripts to compute deltas in hours, costs, timeline changes, added deliverables, and removed features.
+
+---
+
+## 🛠️ Project Structure
+
+```text
 ai-tech-consultant/
 ├── task1-knowledge-brain/
-│   ├── app/
-│   ├── ingestion/
-│   ├── retrieval/
-│   ├── multimodal/
-│   ├── evaluation/
-│   └── tests/
+│   ├── app/                 # FastAPI server & unified web suite
+│   ├── ingestion/           # Async sitemap crawler & SHA-256 change detection
+│   ├── retrieval/           # ChromaDB chunking, indexing, and vector search
+│   ├── multimodal/          # Claude Vision image analysis
+│   ├── evaluation/          # Golden evaluation set & benchmarking runner
+│   └── tests/               # Pytest test suite
+│
 ├── task2-inbox-agent/
 │   ├── src/
-│   │   ├── email/
-│   │   ├── knowledge-client/
-│   │   ├── drafting/
-│   │   ├── feedback/
-│   │   └── evaluation/
-│   └── tests/
+│   │   ├── email/           # Email schemas & test dataset
+│   │   ├── knowledge-client/# Client connector to Task 1 Knowledge Brain API
+│   │   ├── drafting/        # Classification & response drafting pipeline
+│   │   ├── feedback/        # 20-streak autonomy progression tracker
+│   │   └── evaluation/      # Dataset evaluation runner
+│   └── tests/               # Vitest test suite
+│
 ├── task3-meeting-to-scope/
-│   ├── app/
-│   ├── agents/
-│   ├── transcripts/
-│   ├── scope_diff/
-│   ├── evaluation/
-│   └── tests/
-├── shared-docs/
-├── README.md
-├── DESIGN.md
-├── EVALS.md
-└── AI_LOG.md
-
-The document's scope-diff directory is named scope_diff here because Python imports cannot use a hyphen in a package name.
-
-## Requirements
-
-- Python and pip
-- Node.js and npm
-- Git
-- An Anthropic API key for live AI calls
-
-Configuration templates are provided in each task's .env.example file.
-Copy these to .env and configure them locally. Never commit .env files or API keys.
-
-## Task 1: Knowledge Brain
-
-From the repository root:
-
-    cd task1-knowledge-brain
-    python -m pip install -r requirements.txt
-    Copy-Item .env.example .env
-
-Configure .env, then start the service:
-
-    python -m uvicorn app.main:app --host 127.0.0.1 --port 8000
-
-API documentation: http://localhost:8000/docs
-
-Use POST /ingest to collect and index documentation before testing grounded answers.
-
-In another terminal, from task1-knowledge-brain:
-
-    python -m pytest tests
-    python evaluation/run_evals.py
-
-## Task 2: Inbox Agent
-
-From the repository root:
-
-    cd task2-inbox-agent
-    npm install
-    Copy-Item .env.example .env
-    npm test
-
-Configure ANTHROPIC_API_KEY and KNOWLEDGE_BRAIN_URL in .env.
-Start Task 1 before running the live inbox evaluation:
-
-    npm run eval
-
-This task currently runs through scripts; it is not a deployed email service and does not demonstrate delivery to a real mailbox.
-
-## Task 3: Meeting-to-Scope
-
-From the repository root:
-
-    cd task3-meeting-to-scope
-    python -m pip install -r requirements.txt
-    Copy-Item .env.example .env
-
-Configure .env as needed, then run:
-
-    python evaluation/run_evals.py
-    python -m pytest tests/test_scope.py
-
-Start the API:
-
-    python -m uvicorn app.main:app --host 127.0.0.1 --port 8001
-
-API documentation: http://localhost:8001/docs
-
-The current transcript analyst can fall back to sample parsing when a live AI call is unavailable. Sample-mode success does not verify live AI extraction or product feasibility.
-
-## Verification Status
-
-- Task 2: three feedback tracker tests passed locally.
-- Task 3: two tests and the sample evaluation passed locally.
-- Task 1: verification pending.
-- Live AI and cross-task integration: verification pending.
-- Deployment: pending.
-
-See DESIGN.md, EVALS.md, and AI_LOG.md for additional notes.
+│   ├── app/                 # Scope generation & diffing API
+│   ├── agents/              # 5-agent scoping & feasibility pipeline
+│   ├── transcripts/         # Meeting transcripts (Meeting A, B, and C)
+│   ├── scope_diff/          # Automated scope change detection engine
+│   ├── evaluation/          # Scope evaluation script
+│   └── tests/               # Pytest test suite
+│
+├── shared-docs/             # Architectural specifications
+├── README.md                # System documentation
+├── DESIGN.md                # System design & architecture decisions
+├── EVALS.md                 # Evaluation benchmarks & metrics
+├── AI_LOG.md                # AI engineering journey & audit log
+└── .gitignore               # Ignored environments & dependencies
