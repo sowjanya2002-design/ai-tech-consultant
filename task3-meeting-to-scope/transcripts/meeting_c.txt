@@ -1,0 +1,13 @@
+Date: 2026-10-16
+Client: Sarah Jenkins (Apex Directory)
+Consultant: Alex Kumar
+Notes: Follow-up to Meeting A
+
+Alex: Hi Sarah, good to see you again. I have our initial scope for search and mobile fixes.
+Sarah: Hi Alex. A few updates after talking to our board. First, we decided to drop the rating filter from the search requirements—we don't have enough member reviews yet, so rating search makes no sense.
+Alex: Understood: REMOVE rating filter.
+Sarah: Second, we want to ADD an interactive map view to search results. When users search, show pins on Google Maps with click-to-view preview cards.
+Alex: ADD: Interactive Map View with map pins and preview card. Does the directory have Google Maps API keys set up?
+Sarah: Yes, Maps API is active.
+Sarah: And regarding the timeline, our marketing campaign got pushed back, so we have 5 weeks now instead of 3 weeks.
+Alex: Great. We'll update the scope: keep radius, practice area, language filters; remove ratings; add interactive map view; keep mobile UI fixes; extend deadline to 5 weeks.

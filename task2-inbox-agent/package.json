@@ -1,0 +1,21 @@
+{
+  "name": "task2-inbox-agent",
+  "version": "1.0.0",
+  "description": "AI Tech Consultant - Task 2 Inbox Agent",
+  "type": "module",
+  "scripts": {
+    "eval": "tsx src/evaluation/eval.ts",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.30.0",
+    "dotenv": "^16.4.5",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.5",
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.2"
+  }
+}

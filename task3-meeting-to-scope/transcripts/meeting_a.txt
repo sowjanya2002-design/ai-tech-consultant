@@ -1,0 +1,13 @@
+Date: 2026-10-10
+Client: Sarah Jenkins (Apex Directory)
+Consultant: Alex Kumar
+
+Alex: Hi Sarah, thanks for hopping on. Tell me what challenges you're facing with Apex Directory right now.
+Sarah: Thanks Alex. Our users are complaining that search is impossible. If someone searches for 'lawyer in Austin who speaks Spanish', nothing relevant shows up. We need multi-criteria search filters: radius search, practice area, languages, and rating.
+Alex: Understood. Are you looking to keep users within the existing Brilliant Directories system or a custom search engine?
+Sarah: We want to use what we have if possible to save costs, but if it needs custom code, let's estimate it. Also, our mobile layout is terrible. The member profile buttons overlap on iPhones.
+Alex: Got it. 1) Advanced search with faceted filters (radius, specialty, language, rating). 2) Mobile UI fix for member profile pages. Any specific timeline?
+Sarah: We need this live within 3 weeks. Budget is flexible around $5,000 to $8,000.
+Alex: Perfect. What about email notifications when a lead fills a contact form?
+Sarah: That's already working natively, don't touch that. Just search filters and mobile responsive fixes.
+Alex: Crystal clear. I will check feasibility against your platform docs and prepare a scope.

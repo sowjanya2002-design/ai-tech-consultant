@@ -1,0 +1,6 @@
+[
+  {"q": "How do refunds work?", "expect_status": "answered", "keywords": ["refund"]},
+  {"q": "How do I import categories via CSV?", "expect_status": "answered", "keywords": ["csv"]},
+  {"q": "How do I set up email forwarders?", "expect_status": "answered", "keywords": ["forward"]},
+  {"q": "What is the capital of Mars?", "expect_status": "insufficient_evidence"}
+]

@@ -1,0 +1,13 @@
+Date: 2026-10-12
+Client: David Chen (Artisan Goods)
+Consultant: Alex Kumar
+
+Alex: Welcome David. Tell me about the e-commerce workflow improvements you need.
+David: We sell handcrafted furniture. Currently customers pay, but we manually email them tracking numbers. We need automated order status notifications via SMS and email.
+Alex: Okay, automated fulfillment notifications. Which SMS provider do you prefer?
+David: Twilio. We already have an account with credits.
+David: Also, we want a custom one-click checkout modal that supports Apple Pay and Stripe. Our current checkout takes 4 pages.
+Alex: One-click Stripe checkout modal and Twilio SMS. What is out of scope?
+David: We don't need inventory management changes or refund automation right now. Keep those manual.
+Alex: Target completion date?
+David: Before the holiday sale, roughly 4 weeks.

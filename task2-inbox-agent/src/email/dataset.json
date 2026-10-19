@@ -1,0 +1,58 @@
+[
+  {
+    "id": "em_001",
+    "sender": "priya@example.com",
+    "subject": "How to update logo",
+    "body": "Hi Support, where can I upload our new company logo on our directory site? Thanks!",
+    "expectedCategory": "how_to",
+    "expectedRisk": "low"
+  },
+  {
+    "id": "em_002",
+    "sender": "mark@company.org",
+    "subject": "Payment gateway down",
+    "body": "Members are reporting that Stripe checkout is failing with a 500 error since this morning. Please look into this urgently.",
+    "expectedCategory": "troubleshooting",
+    "expectedRisk": "high"
+  },
+  {
+    "id": "em_003",
+    "sender": "sarah@firm.com",
+    "subject": "Refund request for duplicate charge",
+    "body": "Hello, I noticed our account was charged twice on October 1st. Please cancel the extra charge and refund $49 immediately.",
+    "expectedCategory": "refund_cancellation",
+    "expectedRisk": "high"
+  },
+  {
+    "id": "em_004",
+    "sender": "alex@startup.io",
+    "subject": "Custom booking add-on",
+    "body": "We want to know if you can build a customized multi-calendar booking plugin for our members and how long it would take.",
+    "expectedCategory": "project_request",
+    "expectedRisk": "medium"
+  },
+  {
+    "id": "em_005",
+    "sender": "david@agency.net",
+    "subject": "Your latest update broke member login",
+    "body": "This is completely unacceptable. After your release yesterday none of our paying members can sign in. We are losing business.",
+    "expectedCategory": "complaint",
+    "expectedRisk": "high"
+  },
+  {
+    "id": "em_006",
+    "sender": "nina@growth.co",
+    "subject": "Quote for directory migration",
+    "body": "We have 15,000 listings in a CSV. How much will it cost for your team to handle the full import and category mapping?",
+    "expectedCategory": "quote_request",
+    "expectedRisk": "medium"
+  },
+  {
+    "id": "em_007",
+    "sender": "kevin@shop.com",
+    "subject": "Following up on ticket #4812",
+    "body": "Checking in to see if you have any updates on our custom domain SSL issue from two days ago.",
+    "expectedCategory": "follow_up",
+    "expectedRisk": "low"
+  }
+]
